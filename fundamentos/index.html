@@ -46,6 +46,7 @@
     <!-- HTML  -->
     <h1 style="text-align: center">Galería de Imágenes</h1>
 
+    <!-- Contenedor del Formulario -->
     <div class="container" style="text-align: center; margin-bottom: 20px">
       <input type="text" id="imagenURL" placeholder="URL de la imagen" />
       <input type="text" id="pieFoto" placeholder="Pie de foto" />
@@ -109,28 +110,31 @@
         // Obtiene el valor del campo de texto con id 'pieFoto' y lo guarda en la variable 'pie'
         var pie = document.getElementById("pieFoto").value;
         // Obtiene el elemento con id 'galeriaImagenes' y lo guarda en la variable 'galeria'
-        var galeria = document.getElementById("galeriaImagenes");
 
-        var div = document.createElement("div");
-        var img = document.createElement("img");
+        if (url && pie) {
+          var galeria = document.getElementById("galeriaImagenes");
 
-        img.src = url;
-        img.alt = "Imagen nueva";
-        img.width = "300px";
-        img.height = "250px";
+          var div = document.createElement("div");
+          var img = document.createElement("img");
 
-        var p = document.createElement("p");
+          img.src = url;
+          img.alt = "Imagen nueva";
+          img.width = "300px";
+          img.height = "250px";
 
-        p.textContent = pie;
+          var p = document.createElement("p");
 
-        div.appendChild(img);
-        div.appendChild(p);
+          p.textContent = pie;
 
-        galeria.appendChild(div);
+          div.appendChild(img);
+          div.appendChild(p);
 
-        // Pequeña mejora para limpiar los campos después de añadir la imagen
-        document.getElementById("imagenURL").value = "";
-        document.getElementById("pieFoto").value = "";
+          galeria.appendChild(div);
+
+          // Resetear los campos de texto
+          document.getElementById("imagenURL").value = "";
+          document.getElementById("pieFoto").value = "";
+        } else alert("Por favor, introduce imagen y pie de foto.");
       }
     </script>
   </body>
